@@ -50,6 +50,9 @@ function renderBoxGraph({nodes, links}, direction, ignore, sheetWidth, sheetHeig
     for (let [i, link] of links.entries()) {
         link.index = i
         let s = ` \u00d7 ${displayRate(link.rate)}/${rateName}`
+        if (link.beltCount) {
+            s += ` [${Math.ceil(link.beltCount.toFloat()).toFixed()}]`;
+        }
         text.text(s)
         let textWidth = text.node().getBBox().width
         let width = 32 + 10 + textWidth
